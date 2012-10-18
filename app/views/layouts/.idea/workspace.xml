@@ -22,7 +22,7 @@
       <file leaf-file-name="application.html.haml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="49" selection-start="232" selection-end="232" vertical-scroll-proportion="0.22998296">
+            <state line="9" column="48" selection-start="230" selection-end="230" vertical-scroll-proportion="0.22998296">
               <folding />
             </state>
           </provider>
@@ -197,7 +197,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/application.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="49" selection-start="232" selection-end="232" vertical-scroll-proportion="0.22998296">
+        <state line="9" column="48" selection-start="230" selection-end="230" vertical-scroll-proportion="0.22998296">
           <folding />
         </state>
       </provider>
