@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     if id.to_s =~ /\d/
+        # @movie = Movie.find(:all, :order => 'title')
         @movie = Movie.find(id) # look up movie by unique ID
     else
         @movies = Movie.find(:all, :order => 'title')
@@ -15,7 +16,7 @@ class MoviesController < ApplicationController
     # @movies = Movie.find(:all, :order => 'title')
   end
 
-  def list_by_title
+  def title
     @movies = Movie.find(:all, :order => 'title')
   end
 
