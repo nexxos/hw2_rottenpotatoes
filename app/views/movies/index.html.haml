@@ -2,12 +2,14 @@
 -#  %th= link_to"Movie Title", :sort => "title"
 -#  %th= link_to "Release Date", :sort => "release_date"
 
-%h1 All Movies
+-# %h1= link_to "All Movies", "/movies?sort=title"
+%h1
+  %a{:title => "Rotten Tomatoes homepage", :href => "/movies?sort=title"} All movies
 
 -# sorting table form elements
 = form_tag movies_path, :method => :get, :id => 'ratings_form' do
-  = hidden_field_tag "title_sort", true if @title_header
-  = hidden_field_tag ":release_date_sort", true if @date_header
+  = hidden_field_tag "title_sort", true if @sorted_by_title
+  = hidden_field_tag ":release_date_sort", true if @sorted_by_date
   Include: 
   - @all_ratings.each do |rating|
     = rating
@@ -17,11 +19,13 @@
 %table#movies
   %thead
     %tr
-      %th{:class => ("hilite" if params[:sort] == "title")}
+      -# %th{:class => ("hilite" if params[:sort] == "title")}
+      %th{:class => ( params[:sort] == "title" ? "hilite" : "")}
         %a{:href=>"/movies?sort=title", :id=>"title_header"}
           Movie Title
       %th Rating
-      %th{:class => ("hilite" if params[:sort] == "release_date")}
+      -# %th{:class => ("hilite" if params[:sort] == "release_date")}
+      %th{:class => ( params[:sort] == "release_date" ? "hilite" : "")}
         %a{:href=>"/movies?sort=release_date", :id=>"release_date_header"}
           Release Date
       %th More Info

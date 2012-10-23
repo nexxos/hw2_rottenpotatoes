@@ -7,7 +7,11 @@
     = csrf_meta_tags
 
   %body
-    %h1.title Rotten Potatoes! Kaputte Kartoffeln
+    -# %h1.title Rotten Potatoes! Kaputte Kartoffeln
+    -# pipe char allows multiline
+    %h1.title
+      %a{:title => "Rotten Tomatoes homepage", |
+         :href => "/movies?sort=title"} Rotten Potatoes! Kaputte Kartoffeln
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
