@@ -1,3 +1,6 @@
+# I peeked at homework 3 for solving parts 2 and 3 of homework 2 via GIT. 
+# I hope that's okay and you don't fail me altogether. OS
+
 class MoviesController < ApplicationController
 
   def show
@@ -24,8 +27,8 @@ class MoviesController < ApplicationController
    #end
 
    # select all ratings to be displayed if none selected (first load)
-   # TODO fix default selection for none of the checkboxed selected
-   # if none of the ratings are selected the last selection from session is used
+   # TODO fix default selection for none of the checkboxes selected
+   # Now, if none of the ratings are selected, the last selection from session is used
     if @selected_ratings.empty? 
       @selected_ratings =  @all_ratings
     end
@@ -74,5 +77,13 @@ class MoviesController < ApplicationController
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
+
+# not yet useful
+=begin
+  def destroy_session
+    session[:sort] = nil
+    redirect_to "/"
+  end
+=end
 
 end
