@@ -20,11 +20,15 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     @selected_ratings = params[:ratings] || session[:ratings] || {}
    #if @selected_ratings == {}
-     # @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}] 
+   #   @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}] 
+   #end
+
    # select all ratings to be displayed if none selected (first load)
-   #if @selected_ratings.empty? 
-   #   @selected_ratings = Hash.new( @all_ratings.map {|rating| [rating, rating]} )
-   # end
+   # TODO fix default selection for none of the checkboxed selected
+   # if none of the ratings are selected the last selection from session is used
+    if @selected_ratings.empty? 
+      @selected_ratings =  @all_ratings
+    end
     
     if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
       session[:sort] = sort
