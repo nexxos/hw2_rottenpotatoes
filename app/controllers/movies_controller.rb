@@ -3,32 +3,41 @@ class MoviesController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
-=begin
-    if id.to_s =~ /\d/
-        # @movie = Movie.find(:all, :order => 'title')
-        @movie = Movie.find(id) # look up movie by unique ID
-    else
-        @movies = Movie.find(:all, :order => 'title')
-    end
-=end
     # will render app/views/movies/show.<extension> by default
   end
 
   def index
-    # @movies = Movie.all
-    # @movies = Movie.find(:all, :order => 'title')
-    # @movies = Movie.find(:all, :order => 'release_date')
-    # @movies = Movie.order(params[:id])
-    @movies = Movie.order(params[:sort])
+    # @movies = Movie.order(params[:sort])
+    sort = params[:sort] || session[:sort]
+    case sort
+    when 'title'
+      ordering,@title_header = {:order => :title}, 'hilite'
+    when 'release_date'
+      ordering,@date_header = {:order => :release_date}, 'hilite'
+    end
+    @all_ratings = Movie.all_ratings
+    @selected_ratings = params[:ratings] || session[:ratings] || {}
+    
+    if @selected_ratings == {}
+      @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
+    end
+    
+    if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
+      session[:sort] = sort
+      session[:ratings] = @selected_ratings
+      redirect_to :sort => sort, :ratings => @selected_ratings and return
+    end
+    @movies = Movie.find_all_by_rating(@selected_ratings.keys, ordering)
   end
 
+=begin
   def sorted_alphabetical
     @movies = Movie.find(:all, :order => 'title')
   end
   def sorted_creation
     @movies = Movie.find(:all, :order => 'release_date')
   end
-
+=end
 
   def new
     # default: render 'new' template
