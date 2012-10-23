@@ -4,7 +4,7 @@
 
 -# %h1= link_to "All Movies", "/movies?sort=title"
 %h1
-  %a{:title => "Rotten Tomatoes homepage", :href => "/movies?sort=title"} All movies
+  %a{:title => "sort movies by title", :href => "/movies?sort=title"} All movies
 
 -# sorting table form elements
 = form_tag movies_path, :method => :get, :id => 'ratings_form' do
