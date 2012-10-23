@@ -9,14 +9,7 @@ class MoviesController < ApplicationController
   def index
     # @movies = Movie.order(params[:sort])
     sort = params[:sort] || session[:sort]
-=begin
-    case sort
-    when 'title'
-      ordering,@sorted_by_title = {:order => :title}, 'hilite'
-    when 'release_date'
-      ordering,@sorted_by_date = {:order => :release_date}, 'hilite'
-    end
-=end
+
     # sort by title by default
     if sort == "release_date"
       ordering,@sorted_by_date = {:order => :release_date}, 'hilite'
@@ -26,12 +19,12 @@ class MoviesController < ApplicationController
 
     @all_ratings = Movie.all_ratings
     @selected_ratings = params[:ratings] || session[:ratings] || {}
-    
-   if @selected_ratings.empty? 
    #if @selected_ratings == {}
-      # @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
-      @selected_ratings = Hash.new( @all_ratings.map {|rating| [rating, rating]} )
-    end
+     # @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}] 
+   # select all ratings to be displayed if none selected (first load)
+   #if @selected_ratings.empty? 
+   #   @selected_ratings = Hash.new( @all_ratings.map {|rating| [rating, rating]} )
+   # end
     
     if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
       session[:sort] = sort
