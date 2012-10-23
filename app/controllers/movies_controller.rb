@@ -1,6 +1,3 @@
-# I peeked at homework 3 for solving parts 2 and 3 of homework 2 via GIT. 
-# I hope that's okay and you don't fail me altogether. OS
-
 class MoviesController < ApplicationController
 
   def show
@@ -77,13 +74,5 @@ class MoviesController < ApplicationController
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
-
-# not yet useful
-=begin
-  def destroy_session
-    session[:sort] = nil
-    redirect_to "/"
-  end
-=end
 
 end
