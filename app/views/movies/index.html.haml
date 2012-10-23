@@ -31,7 +31,8 @@
       %th More Info
   %tbody
     - @movies.each do |movie|
-      %tr
+      -# %tr
+      %tr{:class => (cycle("odd", "even")) }
         %td= movie.title 
         %td= movie.rating
         %td= movie.release_date
